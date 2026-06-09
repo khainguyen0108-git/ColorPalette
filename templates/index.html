@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Palette</title>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload & Extract</button>
+    </form>
+
+    {% if image_data %}
+        <h3>Your Image:</h3>
+        <img src="{{ image_data }}" width="300">
+    {% endif %}
+
+    {% if color_list %}
+        <h3>Top 10 Colors:</h3>
+        <table border="1">
+            <tr>
+                <th>Color</th>
+                <th>Color Code</th>
+                <th>Percentage</th>
+            </tr>
+            {% for item in color_list %}
+                <tr>
+                    <td style="background-color: {{ item.color_code }}; width: 50px;"></td>
+                    <td>{{ item.color_code }}</td>
+                    <td>{{ item.color_percentage }}%</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
